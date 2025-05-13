@@ -7,10 +7,10 @@ export default function Home() {
 
   const setCookie = async () => {
     try {
-      // Set the cookie by calling the backend
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/set-cookie`, {
+      // Call our Next.js API route instead of the backend directly
+      const response = await fetch('/api/set-cookie', {
         method: 'GET',
-        credentials: 'include', // Important for sending cookies cross-domain
+        credentials: 'include', // Important for receiving cookies
       });
       
       if (response.ok) {
@@ -27,10 +27,10 @@ export default function Home() {
 
   const getCookie = async () => {
     try {
-      // Get the cookie from the backend
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/get-cookie`, {
+      // Call our Next.js API route instead of the backend directly
+      const response = await fetch('/api/get-cookie', {
         method: 'GET',
-        credentials: 'include', // Important for sending cookies cross-domain
+        credentials: 'include', // Important for sending cookies
       });
       
       if (response.ok) {
@@ -53,7 +53,7 @@ export default function Home() {
         onClick={setCookie}
         className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
       >
-        Set HTTP-Only Secure Cookie
+        Send HTTP-Only Secure Cookie
       </button>
       
       <button 
